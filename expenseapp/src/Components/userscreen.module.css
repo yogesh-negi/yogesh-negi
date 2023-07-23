@@ -1,0 +1,174 @@
+/* .form {
+    display: flex;
+    flex-direction: column;
+    height:100%;
+    max-width: 100%;
+    background-image: linear-gradient(black,grey);
+    color:white;
+    font-weight: bold;
+    font-family: Lexend;
+    padding:2% 2% 0% 2%;  
+    font-size: 100%;
+    min-width:300px;
+}
+
+.select {
+    min-width:100px;
+    margin:3% 0 3% 0;
+    max-width:20%;
+    font-size: 80%;
+    height:20px;
+    background:gold;
+    color:rgb(13, 13, 13);
+    font-weight: bolder;
+}
+
+.section {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.input {
+    width:30%;
+    font-size: 90%;
+    text-align: center;
+    margin-bottom:1%;
+}
+
+.table {
+    display: flex column;
+    font-size:80%;
+    flex-wrap: wrap;
+    margin-bottom:2%;
+}
+
+.table td {
+    font-size: 80%;
+    z-index: 1;
+}
+
+.label{
+    display: flex;
+    font-size: 80%;
+    margin-bottom:1%;
+    width:25%;
+}
+
+.addtoplan{
+    display: flex column;
+    justify-content: space-between;
+    color:white;
+    bottom:20%;
+    font-size:80%;
+}
+
+h1 {
+    align-self: center;
+}
+
+
+ */
+
+
+ .userscreenwraper {
+    background-image:linear-gradient(black 50%,grey);
+    display: flex column;
+    width:100vw;
+    padding: 2%;
+    clip-path: polygon(0 0, 100% 0, 100% 93%, 0% 100%);
+    color:white;
+ }
+ .head {
+    display: flex;
+    font-size: 80%;
+    height: auto;
+    justify-content: space-between;
+ }
+
+ .form{
+    display: flex column;
+ }
+
+ .table {
+    display: flex column;
+    text-align: left;
+}
+
+ .table tr {
+    font-size:80%;
+    height:50px;
+}
+ .table tr td:nth-child(1) {
+    width:50%;
+    min-width: 100px;
+ }
+ .table tr td:nth-child(2) {
+    width:40%;
+ }
+ 
+ .addtoplan {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:80%;
+ }
+
+ .addtoplan p {
+    margin: 1.5vw 0%;
+ }
+
+.expensesection{
+    margin-top:2%;
+    display: flex column;
+}
+
+.formsection{
+    display: flex column;
+}
+
+.label {
+    font-size: 70%;
+}
+
+.section{
+    display: flex column;
+}
+
+.input {
+    background-color: grey;
+    outline: none;
+    border: none;
+    box-shadow: 0 0 1px white;
+    color:white;
+    padding:1%;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+tbody tr:hover{
+    background:rgba(63, 212, 29, 0.559);
+    cursor: pointer;
+}
+
+h4 {
+    padding:1%;
+    margin-bottom:1%;
+    text-align: center;
+    background:red;
+    color:yellow;
+}
+
+
+@media (min-width:768px){
+    .userscreenwraper {
+        width:50%;
+    }
+
+    .table tr td {
+        width:20vw;
+        min-width: 100px;
+     }
+    
+}
+
+
