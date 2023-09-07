@@ -1,0 +1,27 @@
+.header {
+    display: flex;
+    background-color: grey;
+    justify-content: flex-end;
+    width:auto;
+    padding:1%;
+}
+
+.menu{
+    display: flex;
+    width:30%;
+    justify-content: space-evenly;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 0% 1%;
+}
+
+.menu p {
+    font-size:90%;
+    padding:1%;
+    border-radius: 5px;
+}
+
+.menu p:hover {
+    background-color: pink;
+}

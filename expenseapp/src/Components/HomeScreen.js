@@ -5,9 +5,9 @@ import UserScreen from "./UserScreen";
 
 function HomeScreen () {
 let location = useLocation()
-let [showuserscreen,setShowuserscreen] = useState(false)
+let [isloggedin, setisloggedin] = useState(localStorage.getItem("isloggedin"))
 let [users,setUserlist] = useState([]);
-let [activeuser, setActiveuser] = useState({"password":0,"empid":""}) 
+let [activeuser, setActiveuser] = useState({"password":0,"empid":""})
 
 let onchangehandler = (e) => {
     setActiveuser(prevState=>{
@@ -23,7 +23,10 @@ let validationhandler = (e) => {
     } 
     let validate = users[activeuser.empid].password == activeuser.password
     if(validate){
-        setShowuserscreen(true)
+        localStorage.setItem("isloggedin",true)
+        localStorage.setItem("activeuser",activeuser.empid)
+        setisloggedin(true)
+
     } else {
         alert("invalid credetials")
         return false
@@ -42,7 +45,7 @@ let validationhandler = (e) => {
 
     return (
         <section className={styles.wrapper}>
-        {!showuserscreen ? 
+        {!isloggedin ? 
             <form className={styles.form} onSubmit={validationhandler}>
             <h1>Login</h1>
             <label className={styles.label} htmlFor="empid"> Emp Id </label>
@@ -51,7 +54,7 @@ let validationhandler = (e) => {
             <input type="text" className={styles.select} id="password" name="password" onChange={onchangehandler}/>
             <input className={styles.input} type="submit" value="Validate"/>
             </form>
-        :<UserScreen user={activeuser.empid}/>}
+        :<UserScreen user={localStorage.getItem("activeuser")}/>}
         </section>
     )
 }

@@ -1,7 +1,9 @@
 import { Fragment, useEffect, useState } from "react";
 import {useLocation} from "react-router-dom"
 import styles from "./userscreen.module.css"
-import { canteenlist } from "./allcanteenlist";
+import useFetchData from "./customehook"
+import {Header} from "./header"
+import { Userdashboard } from "./userdashboard";
 
 
 function UserScreen (props) {
@@ -11,18 +13,19 @@ function UserScreen (props) {
     let [additionalplan, setadditionalplan] = useState([])
     let [plandate,setPlandate] = useState(new Date().toDateString())
     let currentuser = props.user//location.pathname.split("/")[1]
-    
+    let fetchedcanteenlist = useFetchData("https://expenseapp-4d103-default-rtdb.firebaseio.com/alluserscanteenlist",currentuser)
     let allcanteenlist
 
-    if(canteenlist[currentuser] == undefined){
+    if(fetchedcanteenlist.canteenlist[0] == undefined){
         allcanteenlist = []
     } else {
-        allcanteenlist = canteenlist[currentuser].canteendetails
+        allcanteenlist = fetchedcanteenlist.canteenlist[0]
     }
 
 
     let [filteruser,setFilteruser] = useState([])
     let [visitstatus, setVisitstatus] = useState([])
+    let [currentscreen, setcurrentscreen] = useState("updateexpense")
     let [formdata, setformdata] = useState({"daysstay":0,"travelexp":0,"foodandlodging":0,"traveldistance":0,"miscexp":0,"localexpense":0})
     let [docuploadSection, setdocuploadSection] = useState({"showsection":"none","daysstay":true,"travelexp":true,"foodandlodging":true,"bills":true,"miscexp":false,"localexpense":true,"traveldistance":true})
     let onchangehandler = (e) =>{
@@ -114,11 +117,22 @@ useEffect(()=>{
     })
 },[plandate])
 
+let logouthandler = () => {
+    localStorage.clear()
+    window.location.reload()
+}
 
+let viewdashboard = () => {
+    localStorage.setItem("screen","userdashboard")
+    setcurrentscreen("userdashboard")
+}
 
 
     return (
-        <section className={styles.userscreenwraper}>
+        <>            {
+                currentscreen == "updateexpense" ? (
+            <section className={styles.userscreenwraper}>
+            <Header menuitems={[{text:"Log Out",method:logouthandler},{text:"Dashboard",method:viewdashboard}]}/>
                 <center><h3>VISIT PLAN</h3></center>
                 <div className={styles.head}>
                     <span>
@@ -143,7 +157,6 @@ useEffect(()=>{
                         <td>{object.canteenname}</td>
                         <td>{object.location}</td>
                         <td><select className={styles.input} onChange={(e)=>visitstatushandler(e,updateddata)} name="visit status">
-                            <option value="not visited"></option>
                             <option value="not visited">not visited</option>
                             <option value="visited"> visited</option>
                             </select></td>
@@ -202,7 +215,9 @@ useEffect(()=>{
             <input className={styles.input} type="submit" value="submit"/>
             </form>
             </div>
-        </section>
+            </section>):<Userdashboard/>
+            }
+            </>
     )
 
 }

@@ -11,8 +11,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("../public/backgroundimage.jpg");
-  background-size: cover;
+  /* background-image: url("../../public/backgroundimage.jpg");
+  background-size: cover; */
+  background:powderblue;
 }
 
 code {
