@@ -13,9 +13,8 @@ function UserScreen (props) {
     let [additionalplan, setadditionalplan] = useState([])
     let [plandate,setPlandate] = useState(new Date().toDateString())
     let currentuser = props.user//location.pathname.split("/")[1]
-    let fetchedcanteenlist = useFetchData("https://expenseapp-4d103-default-rtdb.firebaseio.com/alluserscanteenlist",currentuser)
+    let fetchedcanteenlist = useFetchData("http://localhost:1200",currentuser)
     let allcanteenlist
-
     if(fetchedcanteenlist.canteenlist[0] == undefined){
         allcanteenlist = []
     } else {
@@ -72,12 +71,16 @@ let sendformdata = (e) =>{
     e.preventDefault()
     let completeformdata =  {visitstatus,formdata}
    
-    fetch(`https://expenseapp-4d103-default-rtdb.firebaseio.com/database/${currentuser}/plan/${plandate}.json`,{
+    fetch(`http://localhost:1200/data/${currentuser}/plan/${plandate}`,{
         method:"put",
+        headers:{
+            "Content-Type":"application/json"
+            },
         body:JSON.stringify(completeformdata)
     }).then((response)=>{
-        return response.json()
+       return response.json()
     }).then(data=>{
+        console.log(data)
         setFilteruser([])
         setVisitstatus([])
         setformdata({"daysstay":0,"travelexp":0,"foodandlodging":0,"traveldistance":0,"miscexp":0,"remarks":"","localexpense":""})
@@ -102,7 +105,7 @@ let addtoplan = (e) => {
 }
 
 useEffect(()=>{
-    fetch(`https://expenseapp-4d103-default-rtdb.firebaseio.com/database/${currentuser}/plan/${plandate}/visitstatus.json`)
+    fetch(`http://localhost:1200/database/${currentuser}/plan/${plandate}`)
     .then(res=>{
         return res.json()
     }).then(resdata=>{
@@ -114,6 +117,9 @@ useEffect(()=>{
             setFilteruser([])
             setVisitstatus([])
         }
+    })
+    .catch(err =>{
+        return
     })
 },[plandate])
 

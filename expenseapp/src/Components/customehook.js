@@ -5,10 +5,9 @@ function useFetchData (url,userid) {
  let [canteendata,setCanteendata] = useState({"canteenlist":"",status:"",error:""})
 
  useEffect(()=>{
-    fetch(`${url}/${userid}/canteendetails.json`).then(res=>res.json()).then(data=>{
-        console.log(data)
-        setCanteendata({"canteenlist":[data],status:"",error:""})
-        return data
+    fetch(`${url}/canteenlist/${userid}`).then(res=>res.json()).then(data=>{
+        setCanteendata({"canteenlist":[data[userid].canteendetails],status:"",error:""})
+        return data[userid]
     }).catch(error=>{
         console.log(error.message)
     })

@@ -9,11 +9,11 @@ let [fetcheddata,setfetcheddata] = useState({})
 let [datearray,setDatearray] = useState([])
 
 useEffect(()=>{
-    fetch(`https://expenseapp-4d103-default-rtdb.firebaseio.com/database/${activeuser}/plan.json`)
+    fetch(`http://localhost:1200/data/${activeuser}`)
     .then(response=>{
         return response.json()
     })
-    .then(data=>{
+    .then(data => {
         setfetcheddata(data)
         setDatearray(()=>{
             return Object.keys(data).map(plandate=>new Date(plandate).toISOString())

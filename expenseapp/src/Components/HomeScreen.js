@@ -35,7 +35,7 @@ let validationhandler = (e) => {
 }
 
     useEffect(()=>{
-        fetch("https://expenseapp-4d103-default-rtdb.firebaseio.com/employeedetails.json")
+        fetch("http://localhost:1200/get-emp-data")
         .then(response=>{
             return response.json()
         }).then(data=>{
