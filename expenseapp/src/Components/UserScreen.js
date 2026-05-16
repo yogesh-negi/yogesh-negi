@@ -13,7 +13,7 @@ function UserScreen (props) {
     let [additionalplan, setadditionalplan] = useState([])
     let [plandate,setPlandate] = useState(new Date().toDateString())
     let currentuser = props.user//location.pathname.split("/")[1]
-    let fetchedcanteenlist = useFetchData("http://localhost:1200",currentuser)
+    let fetchedcanteenlist = useFetchData("https://expenseapp-ydgt.onrender.com",currentuser)
     let allcanteenlist
     if(fetchedcanteenlist.canteenlist[0] == undefined){
         allcanteenlist = []
@@ -71,7 +71,7 @@ let sendformdata = (e) =>{
     e.preventDefault()
     let completeformdata =  {visitstatus,formdata}
    
-    fetch(`http://localhost:1200/data/${currentuser}/plan/${plandate}`,{
+    fetch(`https://expenseapp-ydgt.onrender.com/data/${currentuser}/plan/${plandate}`,{
         method:"put",
         headers:{
             "Content-Type":"application/json"
@@ -105,7 +105,7 @@ let addtoplan = (e) => {
 }
 
 useEffect(()=>{
-    fetch(`http://localhost:1200/database/${currentuser}/plan/${plandate}`)
+    fetch(`https://expenseapp-ydgt.onrender.com/database/${currentuser}/plan/${plandate}`)
     .then(res=>{
         return res.json()
     }).then(resdata=>{

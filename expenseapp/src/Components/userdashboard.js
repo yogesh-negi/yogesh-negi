@@ -9,7 +9,7 @@ let [fetcheddata,setfetcheddata] = useState({})
 let [datearray,setDatearray] = useState([])
 
 useEffect(()=>{
-    fetch(`http://localhost:1200/data/${activeuser}`)
+    fetch(`https://expenseapp-ydgt.onrender.com/data/${activeuser}`)
     .then(response=>{
         return response.json()
     })

@@ -35,7 +35,7 @@ let validationhandler = (e) => {
 }
 
     useEffect(()=>{
-        fetch("http://localhost:1200/get-emp-data")
+        fetch("https://expenseapp-ydgt.onrender.com/get-emp-data")
         .then(response=>{
             return response.json()
         }).then(data=>{
