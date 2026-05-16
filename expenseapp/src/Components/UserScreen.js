@@ -80,7 +80,6 @@ let sendformdata = (e) =>{
     }).then((response)=>{
        return response.json()
     }).then(data=>{
-        console.log(data)
         setFilteruser([])
         setVisitstatus([])
         setformdata({"daysstay":0,"travelexp":0,"foodandlodging":0,"traveldistance":0,"miscexp":0,"remarks":"","localexpense":""})
